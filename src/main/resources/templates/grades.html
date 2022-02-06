@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1>Notendatenbank</h1>
+<tr th:each="gradedSubject: ${GradedSubjects}">
+    <div class="symbol">
+        <td th:text="${gradedSubject.getSubjectName()}?: 'No Information'"/>
+        <td th:text="${gradedSubject.getGrades()}?: 'No Information'"/>
+        <td> Ø</td>
+        <td th:text="${#numbers.formatDecimal(gradedSubject.getAverage(), 1, 'DEFAULT', 2, 'DEFAULT')}?: 'No Information'"/>
+        <form action="/addGrade">
+            <input type="hidden" name="subjectName" th:value="${gradedSubject.getSubjectName()}"/>
+            <input type="hidden" th:id="subject + ${gradedSubjectStat.index}" name="grade"/>
+            <button th:attr="onclick=|addGrade('${gradedSubjectStat.index}')|">Add Grade</button>
+        </form>
+    </div>
+</tr>
+<br><br>
+<div><b>Add new Subject</b></div>
+<form action="/add">
+    <label for="newSubjectName">Subject Name: </label>
+    <input type="text" id="newSubjectName" name="newSubjectName" required="true">
+    <label for="newGrades">Grades (comma separated): </label>
+    <input type="text" id="newGrades" name="newGrades" required="true">
+    <input type="submit" value="Add">
+    </div>
+</form>
+<br><br><br>
+<button th:onclick="window.close()">Quit</button>
+</body>
+</html>
+<script>
+    function addGrade(subjectName) {
+        let grade = prompt("Enter your new grade", "");
+        if (grade != null) {
+            console.log(subjectName)
+            document.getElementById('subject' + subjectName).value = grade;
+        }
+    }
+</script>

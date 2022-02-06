@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<script type="text/javascript" th:src="@{/actions.js}"></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
 <body>
 <h1>Notendatenbank</h1>
-<input type="button"  th:onclick="${GradedSubjects.add()}" value="Note hinzufügen">
-
-
-<tr th:each="gradedSubject: ${GradedSubjects}">
-
-    <div class="symbol">
-        <td th:text="${gradedSubject.getSubjectName()}?: 'No Information'"/>
-        <td th:text="${gradedSubject.getGrades()}?: 'No Information'"/>
+<form action="/grades" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="file">Choose file to upload</label>
+        <input type="file"
+               id="file" name="file"
+               accept=".txt">
     </div>
-</tr>
-</div>
-
+    <div>
+        <button>Upload</button>
+    </div>
+</form>
 </body>
 </html>

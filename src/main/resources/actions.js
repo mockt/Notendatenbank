@@ -1,3 +1,0 @@
-function showPrompt(){
-    prompt("enterGrade")
-}
