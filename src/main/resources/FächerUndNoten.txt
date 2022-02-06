@@ -1,0 +1,5 @@
+Mathe;4;5;4.3;
+Deutsch;5;6;4
+Englisch;4;5.4;5;
+Sport;6;5.5;
+Wirtschaft;4;4.5;4.3;
